@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 20% 5%;
+    --foreground: 0 0% 95%;
+    --card: 240 15% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 240 15% 12%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 258 90% 66%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 15% 18%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 240 15% 18%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 258 90% 66%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 15% 20%;
+    --input: 240 15% 18%;
+    --ring: 258 90% 66%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+/* Container - 覆盖默认行为，填满宽度 */
+.container {
+  width: 100%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(240 15% 10%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(258 90% 40%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(258 90% 50%);
+}
+
+/* Game card hover effect */
+.game-card-hover {
+  @apply transition-all duration-300;
+}
+
+.game-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 30px rgba(107, 78, 255, 0.4);
+}
+
+/* Neon glow text */
+.neon-text {
+  text-shadow: 0 0 10px rgba(107, 78, 255, 0.8),
+               0 0 20px rgba(107, 78, 255, 0.6),
+               0 0 30px rgba(107, 78, 255, 0.4);
+}
+
+/* Glass morphism */
+.glass {
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(107, 78, 255, 0.2);
+}
+
+/* Page centering - 垂直居中但不水平居中，保持左对齐 */
+.page-center {
+  @apply min-h-screen flex flex-col;
+}
+
+.main-content {
+  @apply flex-1 flex flex-col;
+}
+
+/* Gradient border */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(135deg, #6B4EFF, #00D9FF, #FF6B9D);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  border-radius: inherit;
+  pointer-events: none;
+}
