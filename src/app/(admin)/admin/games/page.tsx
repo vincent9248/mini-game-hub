@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Plus, Search, MoreHorizontal, Edit, Trash2, Eye, Star, ToggleLeft, ToggleRight, Upload, Loader2 } from "lucide-react"
+import { Plus, Search, MoreHorizontal, Edit, Trash2, Eye, Star, ToggleLeft, ToggleRight, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -22,6 +22,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import { FileUpload } from "@/components/file-upload"
 
 interface Category {
   id: string
@@ -658,39 +659,22 @@ function GameForm({
         </div>
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="coverImage">封面图片</Label>
-        <div className="flex gap-2">
-          <Input
-            id="coverImage"
-            placeholder="输入图片URL"
-            value={formData.coverImage}
-            onChange={(e) => onInputChange("coverImage", e.target.value)}
-            className="flex-1"
-          />
-          <Button variant="outline" type="button" disabled>
-            <Upload className="h-4 w-4 mr-2" />
-            上传
-          </Button>
-        </div>
-      </div>
+      <FileUpload
+        label="封面图片"
+        value={formData.coverImage}
+        onChange={(value) => onInputChange("coverImage", value)}
+        accept="image/jpeg,image/png,image/gif,image/webp"
+        placeholder="输入图片URL或上传文件"
+      />
 
-      <div className="space-y-2">
-        <Label htmlFor="gameFile">游戏文件 *</Label>
-        <div className="flex gap-2">
-          <Input
-            id="gameFile"
-            placeholder="输入游戏文件URL"
-            value={formData.gameFile}
-            onChange={(e) => onInputChange("gameFile", e.target.value)}
-            className="flex-1"
-          />
-          <Button variant="outline" type="button" disabled>
-            <Upload className="h-4 w-4 mr-2" />
-            上传
-          </Button>
-        </div>
-      </div>
+      <FileUpload
+        label="游戏文件"
+        value={formData.gameFile}
+        onChange={(value) => onInputChange("gameFile", value)}
+        accept=".zip,.html,.js"
+        placeholder="输入游戏文件URL或上传文件"
+        required
+      />
 
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">

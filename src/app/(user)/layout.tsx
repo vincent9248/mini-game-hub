@@ -1,10 +1,11 @@
 import Link from "next/link"
-import { Gamepad2, Search, Bell, Menu, X } from "lucide-react"
+import { Gamepad2, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { auth } from "@/lib/auth"
 import { UserLogoutButton } from "@/components/user-logout-button"
+import { Toaster } from "@/components/ui/toaster"
 
 export default async function UserLayout({
   children,
@@ -15,6 +16,7 @@ export default async function UserLayout({
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Toaster />
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
@@ -40,14 +42,15 @@ export default async function UserLayout({
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="relative hidden sm:flex">
+            <form action="/games" method="get" className="relative hidden sm:flex">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="text"
+                name="search"
                 placeholder="搜索游戏..."
                 className="h-9 w-48 lg:w-64 rounded-lg border bg-background pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
-            </div>
+            </form>
 
             {session ? (
               <DropdownMenu>

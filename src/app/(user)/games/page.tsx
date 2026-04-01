@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { getCategories, getGames } from "@/lib/data-service"
+import { OrderBySelect } from "@/components/order-by-select"
 
 // 格式化播放次数
 function formatPlayCount(count: number): string {
@@ -80,18 +80,7 @@ export default async function GamesPage({ searchParams }: GamesPageProps) {
                 defaultValue={search}
               />
             </form>
-            <Link href={buildPageUrl(currentPage)}>
-              <Select value={orderBy}>
-                <SelectTrigger className="w-32">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="newest">最新</SelectItem>
-                  <SelectItem value="popular">最热</SelectItem>
-                  <SelectItem value="rating">评分</SelectItem>
-                </SelectContent>
-              </Select>
-            </Link>
+            <OrderBySelect value={orderBy} />
           </div>
         </div>
 
